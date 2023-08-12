@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 BaseModel: A basic model with unique id, creation time, and update time.
 TODO: we need to complete the description of the model here
