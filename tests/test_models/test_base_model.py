@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 TestBaseModel: Test cases for the BaseModel class.
 TODO: we need to complete the description of the model here
