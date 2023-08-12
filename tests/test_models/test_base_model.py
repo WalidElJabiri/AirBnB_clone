@@ -63,6 +63,17 @@ class TestBaseModel(unittest.TestCase):
         new_updated_updated_at = obj.updated_at
         self.assertNotEqual(old_updated_atribute, new_updated_updated_at)
 
+    def test_str(self):
+        """
+        Test the return formatof  __str__ method
+        """
+        obj = BaseModel()
+        expected_return_format = (
+            f"[{obj.__class__.__name__}] "
+            f"({obj.id}) {obj.__dict__}"
+            )
+        self.assertEqual(obj.__str__(), expected_return_format)
+
 
 if __name__ == '__main__':
     unittest.main()
