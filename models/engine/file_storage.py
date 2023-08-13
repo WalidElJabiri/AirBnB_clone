@@ -50,17 +50,8 @@ class FileStorage:
 
         No_return value.
         """
-        existing_objects = None
-        if (os.path.exists(self.__file_path) and
-                os.path.getsize(self.__file_path) > 0):
-            with open(self.__file_path, "r") as json_file:
-                existing_objects = json.load(json_file)
-            existing_objects.update(self.__objects)
-            with open(self.__file_path, "w") as json_file:
-                json.dump(existing_objects, json_file)
-        else:
-            with open(self.__file_path, "w") as json_file:
-                json.dump(self.__objects, json_file)
+        with open(self.__file_path, "w") as json_file:
+            json.dump(self.__objects, json_file)
 
     def reload(self):
         """
