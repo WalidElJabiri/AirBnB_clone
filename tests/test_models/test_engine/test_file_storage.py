@@ -10,12 +10,19 @@ import json
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
+
 class TestFileStorage(unittest.TestCase):
     """
     Test cases for the FileStorage class.
     """
     total_object = 0
 
+    def remove_file_if_exists(self):
+        """
+        Remove a JSON file if it exists.
+        """
+        if os.path.exists("storage.json"):
+            os.remove("storage.json")
 
     def test_all(self):
         """
@@ -23,7 +30,11 @@ class TestFileStorage(unittest.TestCase):
         """
         storage_instance = FileStorage()
         self.assertIsInstance(storage_instance._FileStorage__objects, dict)
-        self.assertEqual(len(storage_instance._FileStorage__objects), TestFileStorage.total_object)
+        self.assertEqual(
+            len(storage_instance._FileStorage__objects),
+            TestFileStorage.total_object
+        )
+        self.remove_file_if_exists()
 
     def test_new(self):
         """
@@ -35,9 +46,11 @@ class TestFileStorage(unittest.TestCase):
         TestFileStorage.total_object += 1
         objects = storage_instance.all()
         key = f"{obj.__class__.__name__}.{obj.id}"
+        print(objects)
         self.assertEqual(len(objects), TestFileStorage.total_object)
         self.assertIn(key, objects)
         self.assertEqual(objects[key], obj.to_dict())
+        self.remove_file_if_exists()
 
     def test_all(self):
         """
@@ -52,6 +65,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(len(objects), TestFileStorage.total_object)
         self.assertIn(key, objects)
         self.assertEqual(objects[key], obj.to_dict())
+        self.remove_file_if_exists()
 
     def test_save(self):
         """
@@ -68,7 +82,7 @@ class TestFileStorage(unittest.TestCase):
         key2 = f"{obj2.__class__.__name__}.{obj2.id}"
         TestFileStorage.total_object += 1
         storage_instance.save()
-        
+
         # Reload from the storage
         new_storage = FileStorage()
         new_storage.reload()
@@ -78,6 +92,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(objects[key1], obj1.to_dict())
         self.assertIn(key2, objects)
         self.assertEqual(objects[key2], obj2.to_dict())
+        self.remove_file_if_exists()
 
     def test_reload(self):
         """
@@ -94,7 +109,7 @@ class TestFileStorage(unittest.TestCase):
         key2 = f"{obj2.__class__.__name__}.{obj2.id}"
         TestFileStorage.total_object += 1
         storage_instance.save()
-        
+
         # Reload from the storage
         new_storage = FileStorage()
         new_storage.reload()
@@ -104,6 +119,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(objects[key1], obj1.to_dict())
         self.assertIn(key2, objects)
         self.assertEqual(objects[key2], obj2.to_dict())
+        self.remove_file_if_exists()
 
 
 if __name__ == "__main__":
