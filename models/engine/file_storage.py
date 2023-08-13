@@ -42,7 +42,7 @@ class FileStorage:
         No_return_value.
         """
         key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[key] = obj.to_dict()
+        FileStorage.__objects[key] = obj.to_dict()
 
     def save(self):
         """
@@ -50,7 +50,7 @@ class FileStorage:
 
         No_return value.
         """
-        with open(self.__file_path, "w") as json_file:
+        with open(self.__file_path, "w", encoding="utf-8") as json_file:
             json.dump(self.__objects, json_file)
 
     def reload(self):
@@ -61,5 +61,5 @@ class FileStorage:
         No_return_value.
         """
         if os.path.exists(self.__file_path):
-            with open(self.__file_path, "r") as json_file:
+            with open(self.__file_path, "r", encoding="utf-8") as json_file:
                 FileStorage.__objects = json.load(json_file)
