@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 TestFileStorage: Test cases for the FileStorage class.
-TODO: we need to complete the description of the model here
+TODO: we need to complete the description of the model here.
 """
 
 import unittest
