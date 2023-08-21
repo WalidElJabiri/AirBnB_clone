@@ -1,12 +1,3 @@
-.container {
-	max-width: 1000px;
-	margin-top: 30px;
-	margin-bottom: 30px;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
 .filters {
 	background-color: white;
 	height: 70px;
@@ -66,6 +57,7 @@
 	padding: 0;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	margin-top: 18px;
 }
 
 .locations:hover .popover {
